@@ -106,6 +106,10 @@
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
+
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
     }
 
     initAccordion() {
@@ -183,7 +187,14 @@
           console.log(optionId, option);
 
           // sprawdź, czy opcja (optionId) kategirii (paramId) jest wybrana w formularzu (formData)
-          if (formData[paramId].includes(optionId)) {
+          const optionSelected =
+            formData[paramId] && formData[paramId].includes(optionId);
+          const optionImage = thisProduct.imageWrapper.querySelector(
+            `.${paramId}-${optionId}`
+          );
+          console.log('optionImage:', optionImage);
+
+          if (optionSelected) {
             // jeśli wybrana opcja nie jest opcją domyślną -> zwiększ cene
             if (!option.defaultValue == 1) {
               price += option.price;
@@ -199,6 +210,18 @@
               price -= option.price;
             }
           }
+
+          if (optionImage) {
+            if (optionSelected) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
+          // const optionImage = thisProduct.imageWrapper.querySelector(`.${paramId}-${optionId}`);
+          // console.log('optionImage:', optionImage);
+
+          // jeżeli optionImage i optionSelected
         }
       }
       // update calculated price in the HTML
