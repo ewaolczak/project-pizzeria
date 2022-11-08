@@ -46,8 +46,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9
+      defaultMin: 0,
+      defaultMax: 10
     }
   };
 
@@ -113,7 +113,7 @@
         select.menuProduct.imageWrapper
       );
 
-      thisProduct.ammountWidgetElem = thisProduct.element.querySelector(
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(
         select.menuProduct.amountWidget
       );
     }
@@ -232,6 +232,9 @@
           // jeżeli optionImage i optionSelected
         }
       }
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value;
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
@@ -239,9 +242,12 @@
     initAmountWidget() {
       const thisProduct = this;
 
-      thisProduct.amountWidget = new AmountWidget(
-        thisProduct.ammountWidgetElem
-      );
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+
+      // eslint-disable-next-line no-unused-vars
+      thisProduct.amountWidgetElem.addEventListener('update', function (event) {
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -254,7 +260,7 @@
       console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initAction(thisWidget.value);
     }
 
@@ -262,6 +268,7 @@
       const thisWidget = this;
 
       thisWidget.element = element;
+
       thisWidget.input = thisWidget.element.querySelector(
         select.widgets.amount.input
       );
@@ -275,18 +282,13 @@
 
     setValue(value) {
       const thisWidget = this;
-
       const newValue = parseInt(value);
       const minValue = settings.amountWidget.defaultMin;
       const maxValue = settings.amountWidget.defaultMax;
 
       /* TODO: Add validation */
 
-      thisWidget.value = newValue;
-      thisWidget.input.value = thisWidget.value;
-
       if (thisWidget.value !== newValue && !isNaN(newValue)) {
-        //NIE ROZUMIEM TEGO
         thisWidget.value = newValue;
       }
 
@@ -297,6 +299,8 @@
       if (thisWidget.value > maxValue) {
         thisWidget.value = maxValue;
       }
+
+      thisWidget.input.value = thisWidget.value;
 
       thisWidget.announce();
     }
@@ -320,7 +324,7 @@
       });
     }
 
-    announce(){
+    announce() {
       const thisWidget = this;
 
       const event = new Event('update');
