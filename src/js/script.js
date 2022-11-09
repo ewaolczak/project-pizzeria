@@ -97,10 +97,8 @@
     constructor(id, data) {
       const thisProduct = this;
 
-      thisProduct.dom {}
-
-      thisProduct.dom.id = id;
-      thisProduct.dom.data = data;
+      thisProduct.id = id;
+      thisProduct.data = data;
 
       thisProduct.renderInMenu();
       thisProduct.getElements();
