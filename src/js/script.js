@@ -156,7 +156,7 @@
       );
     }
 
-    initAccordion() { //NIE ZWIJA SIĘ AKORDEON PO KLIKNIĘCIU
+    initAccordion() {
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
@@ -173,18 +173,18 @@
 
         /* find active product (product that has active class) */
 
-        const activeProduct = document.querySelectorAll(
-          classNames.menuProduct.wrapperActive
+        const activeProduct = document.querySelector(
+          select.all.menuProductsActive
         );
         // console.log('activeProduct:', activeProduct);
 
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (this.classList.contains('active') && this != thisProduct.element) {
-          this.classList.remove('active');
+        if (activeProduct != null && activeProduct != thisProduct.element) {
+          activeProduct.classList.remove('active');
         }
 
         /* toggle active class on thisProduct.element */
-        thisProduct.element.classList.add('active');
+        thisProduct.element.classList.toggle('active');
       });
     }
 
@@ -289,13 +289,13 @@
       });
     }
 
-    addToCart(){
-      const thisProduct =this;
+    addToCart() {
+      const thisProduct = this;
 
       app.cart.add(thisProduct.prepareCartProduct());
     }
 
-    prepareCartProduct(){
+    prepareCartProduct() {
       const thisProduct = this;
 
       const productSummary = {
@@ -423,7 +423,7 @@
       });
     }
 
-    add(menuProduct){
+    add(menuProduct) {
       const thisCart = this;
 
       console.log('adding product', menuProduct);
