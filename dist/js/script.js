@@ -1,4 +1,5 @@
-/* global Handlebars, utils, dataSource */ // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars */
+/* global Handlebars, utils, dataSource, event */ // eslint-disable-line no-unused-vars
 
 // const { active } = require('browser-sync');
 
@@ -94,6 +95,7 @@
   };
 
   class Product {
+    // JAK TU DODAĆ KOD thisProduct.dom ??
     constructor(id, data) {
       const thisProduct = this;
 
@@ -158,7 +160,7 @@
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
-      // eslint-disable-next-line no-unused-vars
+
       const clickableTrigger = thisProduct.element.querySelector(
         select.menuProduct.clickable
       );
@@ -170,7 +172,7 @@
         event.preventDefault();
 
         /* find active product (product that has active class) */
-        // eslint-disable-next-line no-unused-vars
+
         const activeProduct = document.querySelectorAll(
           classNames.menuProduct.wrapperActive
         );
@@ -280,14 +282,12 @@
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
-      // eslint-disable-next-line no-unused-vars
       thisProduct.amountWidgetElem.addEventListener('update', function (event) {
         thisProduct.processOrder();
       });
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   class AmountWidget {
     constructor(element) {
       const thisWidget = this;
@@ -344,7 +344,6 @@
     initAction() {
       const thisWidget = this;
 
-      // eslint-disable-next-line no-unused-vars
       thisWidget.input.addEventListener('change', function (event) {
         thisWidget.setValue(thisWidget.input.value);
       });
@@ -368,7 +367,6 @@
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   class Cart {
     constructor(element) {
       const thisCart = this;
@@ -376,6 +374,7 @@
       thisCart.products = [];
 
       thisCart.getElements(element);
+      thisCart.initAction();
 
       console.log('new Cart:', thisCart);
     }
@@ -386,6 +385,19 @@
       thisCart.dom = {};
 
       thisCart.dom.wrapper = element;
+      console.log('thisCart(element):', element);
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(
+        select.cart.toggleTrigger
+      );
+      console.log('thisCart.dom.toggleTigger', thisCart.dom.toggleTrigger);
+    }
+
+    initAction() {
+      const thisCart = this;
+
+      thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
     }
   }
 
@@ -405,6 +417,13 @@
       thisApp.data = dataSource;
     },
 
+    initCart: function () {
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    },
+
     init: function () {
       const thisApp = this;
       // console.log('*** App starting ***');
@@ -415,6 +434,7 @@
 
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     }
   };
 
