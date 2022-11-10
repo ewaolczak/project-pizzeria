@@ -95,7 +95,6 @@
   };
 
   class Product {
-    // JAK TU DODAĆ KOD thisProduct.dom ??
     constructor(id, data) {
       const thisProduct = this;
 
@@ -105,7 +104,7 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
-      thisProduct.initOrferForm();
+      thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
@@ -129,6 +128,7 @@
     }
 
     getElements() {
+      // JAK TU DODAĆ KOD thisProduct.dom ??
       const thisProduct = this;
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(
@@ -188,9 +188,9 @@
       });
     }
 
-    initOrferForm() {
+    initOrderForm() {
       const thisProduct = this;
-      // console.log('initOrderForm:', this.initOrferForm);
+      // console.log('initOrderForm:', this.initOrderForm);
 
       thisProduct.form.addEventListener('submit', function (event) {
         event.preventDefault();
