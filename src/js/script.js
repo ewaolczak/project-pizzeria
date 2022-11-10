@@ -439,7 +439,7 @@
       thisCart.getElements(element);
       thisCart.initAction();
 
-      console.log('new Cart:', thisCart);
+      // console.log('new Cart:', thisCart);
     }
 
     getElements(element) {
@@ -469,7 +469,7 @@
     add(menuProduct) {
       const thisCart = this;
 
-      console.log('adding product', menuProduct);
+      // console.log('adding product', menuProduct);
 
       /* generate HTML based on template */
       const generatedHTML = templates.cartProduct(menuProduct);
@@ -526,10 +526,11 @@
       thisCartProduct.dom.amountWidget.addEventListener(
         'update',
         function (event) {
-          console.log('thisCartProduct.dom.price', thisCartProduct.dom.price);
+          // console.log('thisCartProduct.dom.price', thisCartProduct.dom.price);
           thisCartProduct.amount = thisCartProduct.amountWidget.value;
-          thisCartProduct.totalPrice = thisCartProduct.price * thisCartProduct.amount;
-          thisCartProduct.dom.price.innerHTML = thisCartProduct.totalPrice;
+          thisCartProduct.priceOfProduct =
+            thisCartProduct.price * thisCartProduct.amount;
+          thisCartProduct.dom.price.innerHTML = thisCartProduct.priceOfProduct;
         }
       );
     }
