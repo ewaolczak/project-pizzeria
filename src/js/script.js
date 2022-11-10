@@ -355,8 +355,8 @@
     constructor(element) {
       const thisWidget = this;
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      // console.log('AmountWidget:', thisWidget);
+      // console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
       thisWidget.setValue(settings.amountWidget.defaultValue);
@@ -480,13 +480,13 @@
       /* add element to cart */
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      thisCart.products.push(menuProduct);
-      console.log('thisCart.ptoducts', thisCart.products);
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      // console.log('thisCart.ptoducts', thisCart.products);
     }
   }
 
   class CartProduct {
-    constructor(element, menuProducts) {
+    constructor(element, menuProduct) {
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
@@ -498,11 +498,11 @@
 
       thisCartProduct.getElements(element);
 
-      console.log('thisCartProduct:', thisCartProduct);
+      // console.log('thisCartProduct:', thisCartProduct);
     }
 
     getElements(element) {
-      thisCartProduct = this;
+      const thisCartProduct = this;
 
       thisCartProduct.dom = {
         amountWidget: element.querySelector(select.cartProduct.amountWidget),
@@ -514,6 +514,7 @@
       thisCartProduct.dom.wrapper = element;
     }
   }
+  console.log('CartProduct:', CartProduct);
 
   const app = {
     initMenu: function () {
