@@ -480,7 +480,7 @@
       /* add element to cart */
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      thisCart.products.push(new CartProduct(generatedDOM, menuProduct));
       // console.log('thisCart.ptoducts', thisCart.products);
     }
   }
@@ -514,7 +514,7 @@
       thisCartProduct.dom.wrapper = element;
     }
   }
-  console.log('CartProduct:', CartProduct);
+  // console.log('CartProduct:', CartProduct);
 
   const app = {
     initMenu: function () {
