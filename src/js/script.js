@@ -487,6 +487,7 @@
 
   class CartProduct {
     constructor(element, menuProduct) {
+      // thisCartProduct.getElements(element); 
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
@@ -528,9 +529,9 @@
         function (event) {
           // console.log('thisCartProduct.dom.price', thisCartProduct.dom.price);
           thisCartProduct.amount = thisCartProduct.amountWidget.value;
-          thisCartProduct.priceOfProduct =
-            thisCartProduct.price * thisCartProduct.amount;
-          thisCartProduct.dom.price.innerHTML = thisCartProduct.priceOfProduct;
+          thisCartProduct.newPrice =
+            thisCartProduct.priceSingle * thisCartProduct.amount;
+          thisCartProduct.dom.price.innerHTML = thisCartProduct.newPrice;
         }
       );
     }
