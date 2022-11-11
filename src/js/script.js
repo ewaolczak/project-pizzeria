@@ -482,12 +482,43 @@
 
       thisCart.products.push(new CartProduct(generatedDOM, menuProduct));
       // console.log('thisCart.ptoducts', thisCart.products);
+
+      thisCart.update();
+    }
+
+    update() {
+      const thisCart = this;
+
+      const deliveryFee = settings.cart.defaultDeliveryFee;
+      console.log('deliveryFee:', deliveryFee);
+
+      let totalNumber = 0;
+
+      let subtotalPrice = 0;
+
+      for (let product of thisCart.products) {
+        /* zwiększenie totalNumber o liczbę sztuk danego produktu */
+        totalNumber += product.amount;
+        console.log('totalNumber:', totalNumber);
+
+        /* zwięszkenie subtotalPrice o cenę produktu (price) */
+        subtotalPrice += product.price;
+        console.log('subtotalPrice:', subtotalPrice);
+      }
+
+      if (subtotalPrice === 0) {
+        let deliveryFee = 0;
+        thisCart.totalPrice = 0;
+      }
+
+      thisCart.totalPrice = subtotalPrice + deliveryFee;
+      console.log('totalPrice', thisCart.totalPrice);
     }
   }
 
   class CartProduct {
     constructor(element, menuProduct) {
-      // thisCartProduct.getElements(element); 
+      // thisCartProduct.getElements(element);
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
