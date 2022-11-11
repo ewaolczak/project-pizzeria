@@ -159,13 +159,6 @@
     initAccordion() {
       const thisProduct = this;
 
-      /* find the clickable trigger (the element that should react to clicking) */
-
-      const clickableTrigger = thisProduct.element.querySelector(
-        select.menuProduct.clickable
-      );
-      // console.log(clickableTrigger);
-
       /* START: add event listener to clickable trigger on event click */
       thisProduct.accordionTrigger.addEventListener('click', function (event) {
         /* prevent default action for event */
@@ -355,14 +348,14 @@
   }
 
   class AmountWidget {
-    constructor(element) {
+    constructor(element, startValue) {
       const thisWidget = this;
 
       // console.log('AmountWidget:', thisWidget);
       // console.log('constructor arguments:', element);
 
       thisWidget.getElements(element);
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(startValue || settings.amountWidget.defaultValue);
       thisWidget.initAction(thisWidget.value);
     }
 
@@ -480,7 +473,7 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
 
-      thisCart.dom.productList.addEventListener('updated', function () {
+      thisCart.dom.productList.addEventListener('updated', function (event) {
         thisCart.update();
       });
     }
@@ -526,7 +519,7 @@
       }
 
       if (totalNumber === 0) {
-        let deliveryFee = 0;
+        thisCart.deliveryFee = 0;
         thisCart.totalPrice = 0;
       }
 
