@@ -575,7 +575,7 @@
 
       const payload = {
         address: thisCart.dom.address.value,
-        phone: thisCart.dom.address.phone.value,
+        phone: thisCart.dom.phone.value,
         totalPrice: thisCart.dom.totalPrice,
         subtotalPrice: thisCart.dom.totalPrice - thisCart.deliveryFee,
         totalNumber: thisCart.totalNumber,
