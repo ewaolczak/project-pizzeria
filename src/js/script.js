@@ -576,7 +576,7 @@
       const payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
-        totalPrice: thisCart.dom.totalPrice,
+        totalPrice: thisCart.totalPrice,
         subtotalPrice: thisCart.totalPrice - thisCart.deliveryFee,
         totalNumber: thisCart.totalNumber,
         deliveryFee: thisCart.deliveryFee,
@@ -661,6 +661,12 @@
         thisCartProduct.remove();
         console.log('remove', thisCartProduct.remove());
       });
+    }
+
+    getData(){
+      const thisCartProduct = this;
+
+
     }
   }
   const app = {
