@@ -584,6 +584,26 @@
         products: []
       };
       console.log('payload:', payload);
+
+      for (let prod of thisCart.products) {
+        payload.products.push(prod.getData());
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      };
+
+      fetch(url, options)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (parsedResponse) {
+          console.log('parsedResponse:', parsedResponse);
+        });
     }
   }
 
@@ -664,10 +684,19 @@
       });
     }
 
-    getData(){
+    getData() {
       const thisCartProduct = this;
 
-
+      const cartProductSummary = {
+        id: thisCartProduct.id,
+        name: thisCartProduct.name,
+        amount: thisCartProduct.amount,
+        priceSingle: thisCartProduct.priceSingle,
+        price: thisCartProduct.price,
+        params: thisCartProduct.params
+      };
+      console.log('cartProductSummary:', cartProductSummary);
+      return cartProductSummary;
     }
   }
   const app = {
