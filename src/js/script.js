@@ -535,7 +535,6 @@
         console.log('totalNumber:', thisCart.totalNumber);
 
         /* zwięszkenie subtotalPrice o cenę produktu (price) */
-        thisCart.subtotalPrice += product.price;
         thisCart.subtotalPrice += product.newPrice || product.price;
         console.log('subtotalPrice:', thisCart.subtotalPrice);
       }
@@ -577,7 +576,7 @@
       const payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
-        totalPrice: thisCart.totalPrice,
+        totalPrice: thisCart.dom.totalPrice,
         subtotalPrice: thisCart.totalPrice - thisCart.deliveryFee,
         totalNumber: thisCart.totalNumber,
         deliveryFee: thisCart.deliveryFee,
