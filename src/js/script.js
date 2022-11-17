@@ -535,7 +535,8 @@
         console.log('totalNumber:', thisCart.totalNumber);
 
         /* zwięszkenie subtotalPrice o cenę produktu (price) */
-        thisCart.subtotalPrice += product.price || product.price;
+        thisCart.subtotalPrice += product.price;
+        thisCart.subtotalPrice += product.newPrice || product.price;
         console.log('subtotalPrice:', thisCart.subtotalPrice);
       }
 
