@@ -535,7 +535,7 @@
         console.log('totalNumber:', thisCart.totalNumber);
 
         /* zwięszkenie subtotalPrice o cenę produktu (price) */
-        thisCart.subtotalPrice += product.price;
+        thisCart.subtotalPrice += product.price || product.price;
         console.log('subtotalPrice:', thisCart.subtotalPrice);
       }
 
@@ -577,7 +577,7 @@
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
         totalPrice: thisCart.dom.totalPrice,
-        subtotalPrice: thisCart.dom.totalPrice - thisCart.deliveryFee,
+        subtotalPrice: thisCart.totalPrice - thisCart.deliveryFee,
         totalNumber: thisCart.totalNumber,
         deliveryFee: thisCart.deliveryFee,
         products: []
