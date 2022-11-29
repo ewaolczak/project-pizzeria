@@ -8,7 +8,8 @@ export const select = {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
-    booking: '.booking-wrapper'
+    booking: '.booking-wrapper',
+    floorPlan: '.floor-plan'
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -43,9 +44,6 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table'
-  },
-  bookingProcess: {
-    floorPlan: '.floor-plan',
   },
   nav: {
     links: '.main-nav a'

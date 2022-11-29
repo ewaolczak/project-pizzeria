@@ -234,7 +234,7 @@ class Booking {
       select.booking.tables
     );
     thisBooking.dom.tablesDiv = thisBooking.dom.wrapper.querySelector(
-      select.bookingProcess.floorPlan
+      select.containerOf.floorPlan
     );
   }
 
@@ -259,11 +259,6 @@ class Booking {
     thisBooking.dom.tablesDiv.addEventListener('click', function (event) {
       thisBooking.selectTable(event.target);
     });
-
-    /* thisBooking.tablesDiv.addEventListener('clicked', function (event) {
-      initTables(event);
-      console.log(event);
-    }); */
   }
 }
 
