@@ -45,7 +45,7 @@ export const select = {
     tables: '.floor-plan .table'
   },
   bookingProcess: {
-    floorPlan: 'floor-plan',
+    floorPlan: '.floor-plan',
   },
   nav: {
     links: '.main-nav a'
@@ -85,7 +85,8 @@ export const classNames = {
   // CODE ADDED END
   booking: {
     loading: 'loading',
-    tableBooked: 'booked'
+    tableBooked: 'booked',
+    selected: 'selected'
   },
   nav: {
     active: 'active'
