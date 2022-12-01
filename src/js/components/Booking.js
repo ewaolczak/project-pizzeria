@@ -13,7 +13,6 @@ class Booking {
     thisBooking.getDate();
 
     thisBooking.selectedTable = '';
-    // thisBooking.starters = [];
   }
 
   getDate() {
@@ -242,13 +241,16 @@ class Booking {
     );
     thisBooking.dom.startersCheckboxes =
       thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
-    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
-    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(
+      select.booking.phone
+    );
+    thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(
+      select.booking.address
+    );
   }
 
   initWidgets() {
     const thisBooking = this;
-    thisBooking.starters = [];
 
     thisBooking.peopleAmountWidget = new AmountWidget(
       thisBooking.dom.peopleAmount
@@ -270,22 +272,21 @@ class Booking {
     });
 
     thisBooking.dom.wrapper.addEventListener('click', function (event) {
-      if (
-        event.target.tagName == 'INPUT' &&
-        event.target.type == 'checkbox' &&
-        event.target.name == 'starter'
-      ) {
+      if (event.target.type == 'checkbox' && event.target.name == 'starter') {
         console.log(event.target.value);
-      }
-      if (event.target.value == 'water') {
-        thisBooking.starters.push('water');
-      } if (event.target.value == 'bread') {
-        thisBooking.starters.push('water', 'bread');
-      } else {
-        thisBooking.starters.splice(
-          thisBooking.starters.indexOf(event.target.value),
-          1
-        );
+        thisBooking.starters = [];
+
+        if (event.target.checked == true) {
+          if (event.target.value == 'water') {
+            thisBooking.starters.push('water');
+          }
+          if (event.target.value == 'bread') {
+            thisBooking.starters.push('water', 'bread');
+          }
+        }
+        // else {
+        //   thisBooking.starters = [];
+        // }
       }
     });
 
@@ -308,16 +309,12 @@ class Booking {
       table: parseInt(thisBooking.selectedTable),
       duration: parseInt(thisBooking.hourAmountWidget.correctValue),
       ppl: parseInt(thisBooking.peopleAmountWidget.correctValue),
-      starters: [],
+      starters: thisBooking.starters,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value
     };
     console.log('payload', payload);
     console.log(url);
-
-    for (let starter of thisBooking.starters) {
-      payload.starters.push(starter.value);
-    }
   }
 }
 
