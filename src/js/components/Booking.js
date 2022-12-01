@@ -236,7 +236,9 @@ class Booking {
     thisBooking.dom.tablesDiv = thisBooking.dom.wrapper.querySelector(
       select.containerOf.floorPlan
     );
-    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(select.booking.bookingSubmit);
+    thisBooking.dom.form = thisBooking.dom.wrapper.querySelector(
+      select.booking.bookingSubmit
+    );
   }
 
   initWidgets() {
@@ -262,14 +264,14 @@ class Booking {
     });
   }
 
-  sendBooking(){
+  sendBooking() {
     const thisBooking = this;
 
     const url = settings.db.url + '/' + settings.db.bookings;
 
     const payload = {
       date: thisBooking.dom.DatePicker.value,
-      hour: thisBooking.dom.hourPicker.value,
+      hour: thisBooking.dom.hourPicker.value
       // table:
       // duration:
       // ppl:
@@ -279,15 +281,12 @@ class Booking {
     };
     console.log('payload', payload);
     console.log(url);
-  }
 
-  /* initAction(){
-    const thisBooking = this;
-    thisBooking.dom.bookingSubmit.addEventListener('click', function(event) {
+    thisBooking.dom.bookingSubmit.addEventListener('submit', function (event) {
       event.preventDefault();
       thisBooking.sendBooking();
     });
-  } */
+  }
 }
 
 export default Booking;
