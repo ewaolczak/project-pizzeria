@@ -271,25 +271,6 @@ class Booking {
       thisBooking.selectTable(event.target);
     });
 
-    thisBooking.dom.wrapper.addEventListener('click', function (event) {
-      if (event.target.type == 'checkbox' && event.target.name == 'starter') {
-        console.log(event.target.value);
-        thisBooking.starters = [];
-
-        if (event.target.checked == true) {
-          if (event.target.value == 'water') {
-            thisBooking.starters.push('water');
-          }
-          if (event.target.value == 'bread') {
-            thisBooking.starters.push('water', 'bread');
-          }
-        }
-        // else {
-        //   thisBooking.starters = [];
-        // }
-      }
-    });
-
     thisBooking.dom.form.addEventListener('submit', function (event) {
       event.preventDefault();
       thisBooking.sendBooking();
@@ -309,12 +290,37 @@ class Booking {
       table: parseInt(thisBooking.selectedTable),
       duration: parseInt(thisBooking.hourAmountWidget.correctValue),
       ppl: parseInt(thisBooking.peopleAmountWidget.correctValue),
-      starters: thisBooking.starters,
+      starters: [],
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value
     };
     console.log('payload', payload);
     console.log(url);
+
+    if (thisBooking.dom.startersCheckboxes[1].checked) {
+      payload.starters.push(
+        thisBooking.dom.startersCheckboxes[0].value,
+        thisBooking.dom.startersCheckboxes[1].value
+      );
+    } else if (thisBooking.dom.startersCheckboxes[0].checked) {
+      payload.starters.push(thisBooking.dom.startersCheckboxes[0].value);
+    }
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    };
+
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parsedResponse:', parsedResponse);
+      });
   }
 }
 
