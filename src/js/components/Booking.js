@@ -320,6 +320,13 @@ class Booking {
       })
       .then(function (parsedResponse) {
         console.log('parsedResponse:', parsedResponse);
+        thisBooking.makeBooked(
+          parsedResponse.date,
+          parsedResponse.hour,
+          parsedResponse.duration,
+          parsedResponse.table
+        );
+        thisBooking.updateDOM();
       });
   }
 }
