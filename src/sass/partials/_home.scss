@@ -1,0 +1,67 @@
+.home-wrapper {
+  margin: 42px auto;
+  padding: 72px 48px;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: 4px;
+}
+
+.home-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.nav-tile {
+  width: 49.5%;
+  height: $base-size * 10;
+  border-radius: $radius;
+  background-size: cover;
+  background-position: center;
+
+  &-name {
+    @extend .h1;
+    color: $color-light;
+    transition: $transition;
+    text-align: center;
+    margin: 35px 0;
+  }
+
+  &:hover h3 {
+    transform: translate(0, -25%);
+  }
+}
+
+.tile-order {
+  background-image: url(../../images/assets/pizza-1.jpg);
+}
+
+.tile-booking {
+  background-image: url(../../images/assets/pizza-2.jpg);
+}
+
+.opening-hours {
+  width: 100%;
+  height: $base-size * 10;
+  border-radius: $radius;
+  background-color: $color-main;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+
+  &-title, &-subtitle{
+    color: $color-light;
+    text-align: center;
+    margin: 2px auto;
+  }
+
+  &-title{
+    @extend .h1;
+  }
+
+  &-subtitle{
+    @extend .h2;
+  }
+}
