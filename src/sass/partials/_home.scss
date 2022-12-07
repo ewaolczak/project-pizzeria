@@ -1,9 +1,9 @@
 .home-wrapper {
-  margin: 42px auto;
-  padding: 72px 48px;
-  background: #fff;
-  border-bottom: 1px solid #e6e6e6;
-  border-radius: 4px;
+  margin: ($base-size * 3.5) auto;
+  padding: ($base-size * 6) ($base-size * 4);
+  background: $color-light;
+  border-bottom: 1px solid lighten($color-dark, 70%);
+  border-radius: $radius;
 }
 
 .home-nav {
@@ -13,18 +13,21 @@
 }
 
 .nav-tile {
+  display: flex;
   width: 49.5%;
   height: $base-size * 10;
   border-radius: $radius;
   background-size: cover;
   background-position: center;
+  justify-content: center;
+  align-items: center;
 
   &-name {
     @extend .h1;
     color: $color-light;
     transition: $transition;
     text-align: center;
-    margin: 35px 0;
+    margin: 0;
   }
 
   &:hover h3 {
@@ -51,17 +54,113 @@
   align-items: center;
   margin-top: 5px;
 
-  &-title, &-subtitle{
+  &-title,
+  &-subtitle {
     color: $color-light;
     text-align: center;
-    margin: 2px auto;
+    align-content: center;
+    margin: 0;
   }
 
-  &-title{
+  &-title {
     @extend .h1;
   }
 
-  &-subtitle{
+  &-subtitle {
     @extend .h2;
   }
+}
+
+.main-carousel {
+  margin: ($base-size * 10) auto;
+  height: $base-size * 20;
+}
+
+.carousel-cell {
+  height: $base-size * 20;
+  display: flex;
+
+  &_img-wrapper {
+    width: 50%;
+  }
+
+  &_description {
+    width: 50%;
+    padding: $base-size * 2;
+  }
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: $radius;
+}
+
+/* no circle */
+.flickity-button {
+  display: none;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.gallery-img-wrapper {
+  width: 32%;
+  height: $base-size * 15;
+  position: relative;
+  margin: 1% 0;
+
+  &::after{
+    content: " ";
+    position: absolute;
+    border-radius: $radius;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.0);
+  }
+
+  &:hover::after{
+    background-color: rgba($color: #000000, $alpha: 0.5);
+  }
+
+  .icons{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: block;
+    z-index: 1;
+  
+  i {
+    margin: 0 $base-size;
+    font-size: 24px;
+    color: $color-light;
+    opacity: 0;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover{
+      color: $color-main;
+    }
+  }
+
+  &:hover i{
+    opacity: 1;
+  }
+  }
+}
+
+.view-more a {
+  color: $color-main;
+}
+
+.home-wrapper {
+  padding-bottom: $base-size * 3;
 }

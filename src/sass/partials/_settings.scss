@@ -20,6 +20,12 @@ $radius: 4px;
 
 $base-size: 12px;
 
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
 /* Mixins */
 
 @mixin btn($btn-bg, $btn-text, $btn-border) {

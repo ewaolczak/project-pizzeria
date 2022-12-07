@@ -24,7 +24,8 @@ class HomePage {
 
     const flkty = new Flickity(elem, {
       cellAlign: 'left',
-      contain: true
+      contain: true,
+      autoPlay: true
     });
     console.log(flkty);
   }
