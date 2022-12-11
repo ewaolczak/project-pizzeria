@@ -52,7 +52,8 @@ export const select = {
     address: 'input[name="address"]'
   },
   nav: {
-    links: '.main-nav a'
+    links: '.main-nav a',
+    homeLinks: '.home-nav a'
   },
   // CODE ADDED START
   cart: {

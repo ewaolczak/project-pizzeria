@@ -114,8 +114,8 @@ img {
   position: relative;
   margin: 1% 0;
 
-  &::after{
-    content: " ";
+  &::after {
+    content: ' ';
     position: absolute;
     border-radius: $radius;
     top: 0;
@@ -123,44 +123,40 @@ img {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: rgba($color: #000000, $alpha: 0.0);
+    background-color: rgba($color: #000000, $alpha: 0);
   }
 
-  &:hover::after{
+  &:hover::after {
     background-color: rgba($color: #000000, $alpha: 0.5);
   }
 
-  .icons{
+  .icons {
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
     display: block;
     z-index: 1;
-  
-  i {
-    margin: 0 $base-size;
-    font-size: 24px;
-    color: $color-light;
-    opacity: 0;
-    transition: 0.3s;
-    cursor: pointer;
 
-    &:hover{
-      color: $color-main;
+    i {
+      margin: 0 $base-size;
+      font-size: 24px;
+      color: $color-light;
+      opacity: 0;
+      transition: 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: $color-main;
+      }
     }
-  }
 
-  &:hover i{
-    opacity: 1;
-  }
+    &:hover i {
+      opacity: 1;
+    }
   }
 }
 
 .view-more a {
   color: $color-main;
-}
-
-.home-wrapper {
-  padding-bottom: $base-size * 3;
 }
